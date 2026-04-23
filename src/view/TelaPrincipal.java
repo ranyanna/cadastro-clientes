@@ -9,11 +9,14 @@ import javax.swing.*;
 public class TelaPrincipal extends JFrame {
 
     private JMenuBar barraMenu;
-    private JMenu menuArquivo;
-    private JMenuItem menuCadastro;
+    private JMenu menuClientes;
+
+    private JMenuItem menuCadastrar;
+    private JMenuItem menuListar;
     private JMenuItem menuSair;
 
     public TelaPrincipal() {
+
         setTitle("Sistema de Clientes");
         setSize(400, 300);
         setLocationRelativeTo(null);
@@ -21,24 +24,24 @@ public class TelaPrincipal extends JFrame {
 
         barraMenu = new JMenuBar();
 
-        menuArquivo = new JMenu("Clientes");
+        menuClientes = new JMenu("Clientes");
 
-        menuCadastro = new JMenuItem("Cadastrar Cliente");
+        menuCadastrar = new JMenuItem("Cadastrar Cliente");
+        menuListar = new JMenuItem("Listar Clientes");
         menuSair = new JMenuItem("Sair");
 
-        menuArquivo.add(menuCadastro);
-        menuArquivo.add(menuSair);
+        menuClientes.add(menuCadastrar);
+        menuClientes.add(menuListar);
+        menuClientes.add(menuSair);
 
-        barraMenu.add(menuArquivo);
+        barraMenu.add(menuClientes);
         setJMenuBar(barraMenu);
 
-        menuCadastro.addActionListener(e -> {
-            new TelaCadastroCliente();
-        });
+        menuCadastrar.addActionListener(e -> new TelaCadastroCliente());
 
-        menuSair.addActionListener(e -> {
-            System.exit(0);
-        });
+        menuListar.addActionListener(e -> new TelaListarCliente());
+
+        menuSair.addActionListener(e -> System.exit(0));
 
         setVisible(true);
     }

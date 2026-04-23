@@ -56,26 +56,31 @@ public class TelaCadastroCliente extends JFrame {
 
         bt_salvar.addActionListener(e -> {
 
-            String nome = text_nome.getText();
-            String cpf = text_cpf.getText();
-            String email = text_email.getText();
-            String telefone = text_telefone.getText();
-
             DAOClientes dao = DAOClientes.getInstance();
-            dao.save(nome, cpf, email, telefone);
+
+            dao.save(
+                    text_nome.getText(),
+                    text_cpf.getText(),
+                    text_email.getText(),
+                    text_telefone.getText()
+            );
 
             JOptionPane.showMessageDialog(null, "Cliente salvo com sucesso!");
+
+            text_nome.setText("");
+            text_cpf.setText("");
+            text_email.setText("");
+            text_telefone.setText("");
         });
 
-        bt_cancelar.addActionListener(e -> {
-            dispose();
-        });
+        bt_cancelar.addActionListener(e -> dispose());
 
-        this.add(panel);
-        this.setTitle("Cadastro de Cliente");
-        this.pack();
-        this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setLocationRelativeTo(null);
+        add(panel);
+
+        setTitle("Cadastro de Cliente");
+        pack();
+        setVisible(true);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 }
